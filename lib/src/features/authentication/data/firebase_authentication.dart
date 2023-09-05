@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'firebase_authentication.g.dart';
 
+//TODO: Is this supposed to be called "FirebaseAuthenticationRepository"??
 @riverpod
 class FirebaseAuthentication extends _$FirebaseAuthentication {
   //loginValue referred to in loginpage, value sets and changes register or login button/screen

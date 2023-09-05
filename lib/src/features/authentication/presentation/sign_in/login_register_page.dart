@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+//TODO: Should this be called LoginController? is this the controller?
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
