@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -35,6 +36,15 @@ class FirebaseAuthentication extends _$FirebaseAuthentication {
       email: email,
       password: password,
     );
+  }
+
+  //this is used for the snackbar
+  Text checkIfUserIsNull(user) {
+    if (user != null) {
+      return Text("Welcome, ${user.email}");
+    } else {
+      return const Text("User is null");
+    }
   }
 
   Future<void> signOut() async {

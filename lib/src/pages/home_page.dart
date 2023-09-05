@@ -1,9 +1,34 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  ConsumerState<HomePage> createState() => _HomePage();
+}
+
+class _HomePage extends ConsumerState<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBar());
+  }
+
+  void showSnackBar() {
+    FirebaseAuthentication auth = FirebaseAuthentication();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: ref.read(firebaseAuthenticationProvider.notifier).checkIfUserIsNull(auth.currentUser),
+        action: SnackBarAction(
+          label: 'OK',
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
 
   final User? user = FirebaseAuthentication().currentUser;
 
