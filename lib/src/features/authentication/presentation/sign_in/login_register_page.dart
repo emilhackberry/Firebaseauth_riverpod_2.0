@@ -16,18 +16,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
-  // void showSnackBarWithErrorMessage(errorMessage) {
-  //   ScaffoldMessenger.of(context).showSnackBar(
-  //     SnackBar(
-  //       content: Text(errorMessage),
-  //       action: SnackBarAction(
-  //         label: 'OK',
-  //         onPressed: () {},
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Future<void> signInWithEmailAndPassword() async {
     try {
       await FirebaseAuthentication().signInWithEmailAndPassword(
