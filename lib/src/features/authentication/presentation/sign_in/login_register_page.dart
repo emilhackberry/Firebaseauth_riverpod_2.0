@@ -59,7 +59,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     );
   }
 
-  //the bottom button that switches login/sign up screen
+  //the bottom text button that switches login/sign up screen
   Widget _loginOrRegisterButton(loginValue) {
     return TextButton(
       onPressed: () {
@@ -72,9 +72,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final isLogin = ref.watch(firebaseAuthenticationProvider);
-    // final userAuth = ref.watch(firebaseAuthenticationProvider.notifier); //TODO check new stuff testing
-    //final createUser = userAuth.createUserWithEmailAndPassword; //TODO check new stuff testing
-    // final createUser = userAuth.createUserWithEmailAndPassword;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Firebase auth"),
