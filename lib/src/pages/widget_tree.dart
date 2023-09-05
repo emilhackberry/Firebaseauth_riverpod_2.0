@@ -1,5 +1,5 @@
 import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
-import 'package:firebaseauth/src/features/authentication/presentation/login_register_page.dart';
+import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_page.dart';
 import 'package:firebaseauth/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

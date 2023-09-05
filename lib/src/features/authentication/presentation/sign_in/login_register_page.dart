@@ -1,3 +1,4 @@
+import 'package:firebaseauth/src/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
@@ -15,17 +16,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
-  void showSnackBarWithErrorMessage(errorMessage) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(errorMessage),
-        action: SnackBarAction(
-          label: 'OK',
-          onPressed: () {},
-        ),
-      ),
-    );
-  }
+  // void showSnackBarWithErrorMessage(errorMessage) {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text(errorMessage),
+  //       action: SnackBarAction(
+  //         label: 'OK',
+  //         onPressed: () {},
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Future<void> signInWithEmailAndPassword() async {
     try {
@@ -34,7 +35,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         password: _controllerPassword.text,
       );
     } on FirebaseAuthException catch (signInError) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithErrorMessage(signInError.message));
+      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithMessage(context, signInError.message as String));
     }
   }
 
@@ -45,7 +46,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         password: _controllerPassword.text,
       );
     } on FirebaseAuthException catch (createUserError) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithErrorMessage(createUserError.message));
+      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithMessage(context, createUserError.message as String));
     }
   }
 
