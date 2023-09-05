@@ -18,10 +18,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> signInWithEmailAndPassword() async {
     try {
-      await FirebaseAuthentication().signInWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
+      await ref.read(firebaseAuthenticationProvider.notifier).signInWithEmailAndPassword(
+            email: _controllerEmail.text,
+            password: _controllerPassword.text,
+          );
     } on FirebaseAuthException catch (signInError) {
       WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithMessage(context, signInError.message as String));
     }
@@ -29,10 +29,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
-      await FirebaseAuthentication().createUserWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
+      await ref.read(firebaseAuthenticationProvider.notifier).createUserWithEmailAndPassword(
+            email: _controllerEmail.text,
+            password: _controllerPassword.text,
+          );
     } on FirebaseAuthException catch (createUserError) {
       WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithMessage(context, createUserError.message as String));
     }
@@ -72,6 +72,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final isLogin = ref.watch(firebaseAuthenticationProvider);
+    // final userAuth = ref.watch(firebaseAuthenticationProvider.notifier); //TODO check new stuff testing
+    //final createUser = userAuth.createUserWithEmailAndPassword; //TODO check new stuff testing
+    // final createUser = userAuth.createUserWithEmailAndPassword;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Firebase auth"),
