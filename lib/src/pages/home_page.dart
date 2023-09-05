@@ -14,10 +14,10 @@ class _HomePage extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBar());
+    WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithWelcomeMessage());
   }
 
-  void showSnackBar() {
+  void showSnackBarWithWelcomeMessage() {
     FirebaseAuthentication auth = FirebaseAuthentication();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -40,8 +40,8 @@ class _HomePage extends ConsumerState<HomePage> {
     return const Text("Firebase Authentication");
   }
 
-  Widget _userUID() {
-    return Text(user?.email ?? "User email");
+  Widget _userEmail() {
+    return Text("Hello, ${user?.email ?? "User email"}");
   }
 
   Widget _signOutButton() {
@@ -65,7 +65,7 @@ class _HomePage extends ConsumerState<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _userUID(),
+            _userEmail(),
             _signOutButton(),
           ],
         ),

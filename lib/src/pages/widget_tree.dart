@@ -18,7 +18,7 @@ class _WidgetTreeState extends ConsumerState<WidgetTree> {
       stream: FirebaseAuthentication().authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return HomePage();
+          return const HomePage();
         } else {
           return const LoginPage();
         }
