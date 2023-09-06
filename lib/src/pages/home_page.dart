@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
+import 'package:firebaseauth/src/pages/home_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,21 +33,19 @@ class _HomePage extends ConsumerState<HomePage> {
 
   final User? user = FirebaseAuthentication().currentUser;
 
-  Future<void> signOut() async {
-    await FirebaseAuthentication().signOut();
-  }
-
   Widget _title() {
     return const Text("Firebase Authentication");
   }
 
   Widget _userEmail() {
-    return Text("Hello, ${user?.email ?? "User email"}");
+    return Text("Hello, ${user?.email}");
   }
 
   Widget _signOutButton() {
     return ElevatedButton(
-      onPressed: signOut,
+      onPressed: () {
+        ref.read(homePageControllerProvider.notifier).signOut();
+      },
       child: const Text("Sign out"),
     );
   }
