@@ -1,10 +1,10 @@
+import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_controller.dart';
 import 'package:firebaseauth/src/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-//TODO: Should this be called LoginController? is this the controller?
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
@@ -13,30 +13,8 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
-
-  Future<void> signInWithEmailAndPassword() async {
-    try {
-      await ref.read(firebaseAuthenticationProvider.notifier).signInWithEmailAndPassword(
-            email: _controllerEmail.text,
-            password: _controllerPassword.text,
-          );
-    } on FirebaseAuthException catch (signInError) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithMessage(context, signInError.message as String));
-    }
-  }
-
-  Future<void> createUserWithEmailAndPassword() async {
-    try {
-      await ref.read(firebaseAuthenticationProvider.notifier).createUserWithEmailAndPassword(
-            email: _controllerEmail.text,
-            password: _controllerPassword.text,
-          );
-    } on FirebaseAuthException catch (createUserError) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithMessage(context, createUserError.message as String));
-    }
-  }
+  final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
 
   Widget _entryField(
     String title,
@@ -54,7 +32,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Widget _submitButton(loginValue) {
     return ElevatedButton(
-      onPressed: loginValue ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
+      onPressed: () {
+        ref.read(loginPageControllerProvider.notifier).loginOrCreateAccount(
+              loginValue,
+              controllerEmail,
+              controllerPassword,
+              context,
+            );
+      },
       child: Text(loginValue ? "Login" : "Register"),
     );
   }
@@ -84,8 +69,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _entryField("email", _controllerEmail, false),
-            _entryField("password", _controllerPassword, true),
+            _entryField("email", controllerEmail, false),
+            _entryField("password", controllerPassword, true),
             _submitButton(isLogin),
             _loginOrRegisterButton(isLogin),
           ],
