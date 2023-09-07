@@ -1,7 +1,12 @@
+//not working, just crashes when thrown
+
 sealed class AppException implements Exception {
   AppException(this.code, this.message);
   final String code;
   final String message;
+
+  @override
+  String toString() => message;
 }
 
 class EmailAlreadyInUseException extends AppException {
@@ -18,4 +23,10 @@ class WrongPasswordException extends AppException {
 
 class UserNotFoundException extends AppException {
   UserNotFoundException() : super('user-not-found', 'User not found');
+}
+
+class TestExc extends AppException {
+  TestExc()
+      : super('The password is invalid or the user does not have a password.',
+            "The password is invalid or the user does not have a password.");
 }

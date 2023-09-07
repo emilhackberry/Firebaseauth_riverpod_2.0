@@ -1,3 +1,4 @@
+import 'package:firebaseauth/src/exceptions/app_exceptions.dart';
 import 'package:firebaseauth/src/features/authentication/data/firebase_auth_repository.dart';
 import 'package:firebaseauth/src/features/authentication/presentation/sign_in/auth_controller.dart';
 import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_controller.dart';
@@ -65,7 +66,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       (previous, current) {
         if (current.hasError) {
           //snackbar with regexp that trims part of the string output
+          // print(current.error.toString().replaceAll(RegExp(r'\[.*?\]'), '').trim());
           showSnackBarWithMessage(context, current.error.toString().replaceAll(RegExp(r'\[.*?\]'), '').trim());
+          // throw TestExc();
         }
       },
     );
