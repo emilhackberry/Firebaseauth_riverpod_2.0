@@ -53,13 +53,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final isLogin = ref.read(isLoginControllerProvider.notifier);
     final isLoginListener = ref.watch(isLoginControllerProvider);
     return TextButton(
-      onPressed: () {
-        isLogin.toggleIsLogin();
-        // loginProvider.firebaseAuthRepo.authStateChanges.listen((user) {
-        //   print(user?.email);
-        // });
-      },
-      // onPressed: () => loginProvider.toggleIsLogin(),
+      onPressed: () => isLogin.toggleIsLogin(),
       child: Text(isLoginListener ? "Register instead" : "Login instead"),
     );
   }
@@ -70,7 +64,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       loginPageControllerProvider(ref.read(firebaseAuthRepositoryProvider)),
       (previous, current) {
         if (current.hasError) {
-          showSnackBarWithMessage(context, 'Error');
+          //snackbar with regexp that trims part of the string output
+          showSnackBarWithMessage(
+            context,
+            current.error.toString().replaceAll(RegExp(r'\[.*?\]'), '').trim(),
+          );
         }
       },
     );
