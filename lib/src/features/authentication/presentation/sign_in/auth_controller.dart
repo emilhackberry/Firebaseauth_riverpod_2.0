@@ -13,15 +13,16 @@ part 'auth_controller.g.dart';
 class AuthController extends _$AuthController {
   @override
   bool build(FirebaseAuthRepository firebaseAuthRepo) {
-    firebaseAuthRepo.authStateChanges.listen((user) {
-      if (user != null) {
-        state = true;
+    firebaseAuthRepo.authStateChanges.listen(
+      (user) {
+        if (user != null) {
+          state = true;
+          return;
+        }
+        state = false;
         return;
-      }
-      state = false;
-      return;
-    });
-
+      },
+    );
     return false;
   }
 }

@@ -2,8 +2,24 @@
 // RiverpodGenerator
 // **************************************************************************
 
+String _$isLoginControllerHash() => r'b1cf96ab34f7a47da3cd0059c0e12b576ad331d3';
+
+/// See also [IsLoginController].
+@ProviderFor(IsLoginController)
+final isLoginControllerProvider =
+    AutoDisposeNotifierProvider<IsLoginController, bool>.internal(
+  IsLoginController.new,
+  name: r'isLoginControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isLoginControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$IsLoginController = AutoDisposeNotifier<bool>;
 String _$loginPageControllerHash() =>
-    r'f716fa8dc2bc15853ea66041529d5ae93c82a8ad';
+    r'98ad995cb0d98665a8f74584a8545e736204eeba';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -27,10 +43,10 @@ class _SystemHash {
 }
 
 abstract class _$LoginPageController
-    extends BuildlessAutoDisposeNotifier<LoginState> {
+    extends BuildlessAutoDisposeAsyncNotifier<void> {
   late final FirebaseAuthRepository firebaseAuthRepo;
 
-  LoginState build(
+  FutureOr<void> build(
     FirebaseAuthRepository firebaseAuthRepo,
   );
 }
@@ -40,7 +56,7 @@ abstract class _$LoginPageController
 const loginPageControllerProvider = LoginPageControllerFamily();
 
 /// See also [LoginPageController].
-class LoginPageControllerFamily extends Family<LoginState> {
+class LoginPageControllerFamily extends Family<AsyncValue<void>> {
   /// See also [LoginPageController].
   const LoginPageControllerFamily();
 
@@ -79,7 +95,7 @@ class LoginPageControllerFamily extends Family<LoginState> {
 
 /// See also [LoginPageController].
 class LoginPageControllerProvider
-    extends AutoDisposeNotifierProviderImpl<LoginPageController, LoginState> {
+    extends AutoDisposeAsyncNotifierProviderImpl<LoginPageController, void> {
   /// See also [LoginPageController].
   LoginPageControllerProvider(
     FirebaseAuthRepository firebaseAuthRepo,
@@ -110,7 +126,7 @@ class LoginPageControllerProvider
   final FirebaseAuthRepository firebaseAuthRepo;
 
   @override
-  LoginState runNotifierBuild(
+  FutureOr<void> runNotifierBuild(
     covariant LoginPageController notifier,
   ) {
     return notifier.build(
@@ -135,7 +151,7 @@ class LoginPageControllerProvider
   }
 
   @override
-  AutoDisposeNotifierProviderElement<LoginPageController, LoginState>
+  AutoDisposeAsyncNotifierProviderElement<LoginPageController, void>
       createElement() {
     return _LoginPageControllerProviderElement(this);
   }
@@ -155,13 +171,13 @@ class LoginPageControllerProvider
   }
 }
 
-mixin LoginPageControllerRef on AutoDisposeNotifierProviderRef<LoginState> {
+mixin LoginPageControllerRef on AutoDisposeAsyncNotifierProviderRef<void> {
   /// The parameter `firebaseAuthRepo` of this provider.
   FirebaseAuthRepository get firebaseAuthRepo;
 }
 
 class _LoginPageControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<LoginPageController, LoginState>
+    extends AutoDisposeAsyncNotifierProviderElement<LoginPageController, void>
     with LoginPageControllerRef {
   _LoginPageControllerProviderElement(super.provider);
 

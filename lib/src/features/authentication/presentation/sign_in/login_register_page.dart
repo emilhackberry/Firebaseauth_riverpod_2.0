@@ -1,6 +1,7 @@
 import 'package:firebaseauth/src/features/authentication/data/firebase_auth_repository.dart';
 import 'package:firebaseauth/src/features/authentication/presentation/sign_in/auth_controller.dart';
 import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_controller.dart';
+import 'package:firebaseauth/src/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -49,23 +50,30 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   //the bottom text button that switches login/sign up screen
   Widget _loginOrRegisterButton({required bool isLogin}) {
-    final loginProvider = ref.read(loginPageControllerProvider(
-      ref.watch(firebaseAuthRepositoryProvider),
-    ).notifier);
+    final isLogin = ref.read(isLoginControllerProvider.notifier);
+    final isLoginListener = ref.watch(isLoginControllerProvider);
     return TextButton(
       onPressed: () {
-        loginProvider.toggleIsLogin();
+        isLogin.toggleIsLogin();
         // loginProvider.firebaseAuthRepo.authStateChanges.listen((user) {
         //   print(user?.email);
         // });
       },
       // onPressed: () => loginProvider.toggleIsLogin(),
-      child: Text(isLogin ? "Register instead" : "Login instead"),
+      child: Text(isLoginListener ? "Register instead" : "Login instead"),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(
+      loginPageControllerProvider(ref.read(firebaseAuthRepositoryProvider)),
+      (previous, current) {
+        if (current.hasError) {
+          showSnackBarWithMessage(context, 'Error');
+        }
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text("Firebase auth"),
@@ -76,10 +84,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         padding: const EdgeInsets.all(20),
         child: Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? _) {
-            final loginProviderListener = ref.watch(loginPageControllerProvider(
-              ref.watch(firebaseAuthRepositoryProvider),
-            ));
-            final isLogin = loginProviderListener.isLogin;
+            final isLogin = ref.watch(isLoginControllerProvider);
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

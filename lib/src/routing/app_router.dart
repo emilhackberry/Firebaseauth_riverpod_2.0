@@ -1,7 +1,9 @@
 import 'package:firebaseauth/src/features/authentication/data/firebase_auth_repository.dart';
+import 'package:firebaseauth/src/features/authentication/presentation/sign_in/auth_controller.dart';
 import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_controller.dart';
 import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_page.dart';
 import 'package:firebaseauth/src/pages/home_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,18 +13,15 @@ enum AppRoute {
   loginPage,
 }
 
-final goRouterProvider = Provider<GoRouter>(
+final goRouterProvider = Provider.autoDispose<GoRouter>(
   (ref) {
-    final loginProvider = ref.read(loginPageControllerProvider(ref.read(firebaseAuthRepositoryProvider)).notifier);
+    final isLoggedIn = ref.watch(authControllerProvider(ref.read(firebaseAuthRepositoryProvider)));
     return GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: false,
       redirect: (context, state) {
         //if user is authenticated, go to home page
-        final user = loginProvider.firebaseAuthRepo.currentUser;
-        final isLoggedIn = user != null;
         if (isLoggedIn) {
-          print(user?.email);
           return '/home';
         } else {
           return '/';
