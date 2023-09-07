@@ -154,6 +154,10 @@ flutter_riverpod
 2.17
 file:///Users/emil/.pub-cache/hosted/pub.dev/flutter_riverpod-2.4.0/
 file:///Users/emil/.pub-cache/hosted/pub.dev/flutter_riverpod-2.4.0/lib/
+freezed
+2.17
+file:///Users/emil/.pub-cache/hosted/pub.dev/freezed-2.4.2/
+file:///Users/emil/.pub-cache/hosted/pub.dev/freezed-2.4.2/lib/
 freezed_annotation
 2.17
 file:///Users/emil/.pub-cache/hosted/pub.dev/freezed_annotation-2.4.1/
@@ -166,6 +170,10 @@ glob
 2.19
 file:///Users/emil/.pub-cache/hosted/pub.dev/glob-2.1.2/
 file:///Users/emil/.pub-cache/hosted/pub.dev/glob-2.1.2/lib/
+go_router
+2.19
+file:///Users/emil/.pub-cache/hosted/pub.dev/go_router-10.1.2/
+file:///Users/emil/.pub-cache/hosted/pub.dev/go_router-10.1.2/lib/
 graphs
 2.18
 file:///Users/emil/.pub-cache/hosted/pub.dev/graphs-2.3.1/

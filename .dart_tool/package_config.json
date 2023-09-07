@@ -254,6 +254,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "freezed",
+      "rootUri": "file:///Users/emil/.pub-cache/hosted/pub.dev/freezed-2.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "freezed_annotation",
       "rootUri": "file:///Users/emil/.pub-cache/hosted/pub.dev/freezed_annotation-2.4.1",
       "packageUri": "lib/",
@@ -268,6 +274,12 @@
     {
       "name": "glob",
       "rootUri": "file:///Users/emil/.pub-cache/hosted/pub.dev/glob-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "go_router",
+      "rootUri": "file:///Users/emil/.pub-cache/hosted/pub.dev/go_router-10.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -536,7 +548,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-09-05T11:13:54.541641Z",
+  "generated": "2023-09-07T07:09:01.670683Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

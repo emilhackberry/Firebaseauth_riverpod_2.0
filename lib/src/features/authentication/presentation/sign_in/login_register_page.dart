@@ -1,8 +1,7 @@
+import 'package:firebaseauth/src/features/authentication/data/firebase_auth_repository.dart';
+import 'package:firebaseauth/src/features/authentication/presentation/sign_in/auth_controller.dart';
 import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_controller.dart';
-import 'package:firebaseauth/src/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -30,33 +29,43 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     );
   }
 
-  Widget _submitButton(loginValue) {
+  Widget _submitButton({required bool isLogin}) {
+    final loginProvider = ref.read(
+      loginPageControllerProvider(
+        ref.watch(firebaseAuthRepositoryProvider),
+      ).notifier,
+    );
     return ElevatedButton(
       onPressed: () {
-        ref.read(loginPageControllerProvider.notifier).loginOrCreateAccount(
-              loginValue,
-              controllerEmail,
-              controllerPassword,
-              context,
-            );
+        loginProvider.loginOrCreateAccount(
+          isLogin: isLogin,
+          email: controllerEmail.text,
+          password: controllerPassword.text,
+        );
       },
-      child: Text(loginValue ? "Login" : "Register"),
+      child: Text(isLogin ? "Login" : "Register"),
     );
   }
 
   //the bottom text button that switches login/sign up screen
-  Widget _loginOrRegisterButton(loginValue) {
+  Widget _loginOrRegisterButton({required bool isLogin}) {
+    final loginProvider = ref.read(loginPageControllerProvider(
+      ref.watch(firebaseAuthRepositoryProvider),
+    ).notifier);
     return TextButton(
       onPressed: () {
-        ref.read(firebaseAuthenticationProvider.notifier).loginRegisterChange();
+        loginProvider.toggleIsLogin();
+        // loginProvider.firebaseAuthRepo.authStateChanges.listen((user) {
+        //   print(user?.email);
+        // });
       },
-      child: Text(loginValue ? "Register instead" : "Login instead"),
+      // onPressed: () => loginProvider.toggleIsLogin(),
+      child: Text(isLogin ? "Register instead" : "Login instead"),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final isLogin = ref.watch(firebaseAuthenticationProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Firebase auth"),
@@ -65,15 +74,23 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         height: double.infinity,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _entryField("email", controllerEmail, false),
-            _entryField("password", controllerPassword, true),
-            _submitButton(isLogin),
-            _loginOrRegisterButton(isLogin),
-          ],
+        child: Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? _) {
+            final loginProviderListener = ref.watch(loginPageControllerProvider(
+              ref.watch(firebaseAuthRepositoryProvider),
+            ));
+            final isLogin = loginProviderListener.isLogin;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _entryField("email", controllerEmail, false),
+                _entryField("password", controllerPassword, true),
+                _submitButton(isLogin: isLogin),
+                _loginOrRegisterButton(isLogin: isLogin),
+              ],
+            );
+          },
         ),
       ),
     );

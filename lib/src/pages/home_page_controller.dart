@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
-import 'package:firebaseauth/src/widgets/snackbar.dart';
-import 'package:flutter/material.dart';
 // ignore: unnecessary_import
+import 'package:firebaseauth/src/features/authentication/data/firebase_auth_repository.dart';
+import 'package:firebaseauth/src/features/authentication/presentation/sign_in/login_register_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -15,9 +13,9 @@ class HomePageController extends _$HomePageController {
     //
   }
   Future<void> signOut() async {
-    final fireBaseAuth = ref.watch(firebaseAuthenticationProvider.notifier);
-    if (fireBaseAuth.currentUser != null) {
-      await fireBaseAuth.signOut();
+    final loginProvider = ref.read(loginPageControllerProvider(ref.watch(firebaseAuthRepositoryProvider)).notifier);
+    if (loginProvider.firebaseAuthRepo.currentUser != null) {
+      await loginProvider.firebaseAuthRepo.signOut();
     }
   }
 }

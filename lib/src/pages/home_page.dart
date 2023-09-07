@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebaseauth/src/features/authentication/data/firebase_authentication.dart';
 import 'package:firebaseauth/src/pages/home_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,30 +13,28 @@ class _HomePage extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarWithWelcomeMessage());
   }
 
-  void showSnackBarWithWelcomeMessage() {
-    FirebaseAuthentication auth = FirebaseAuthentication();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: ref.read(firebaseAuthenticationProvider.notifier).checkIfUserIsNull(auth.currentUser),
-        action: SnackBarAction(
-          label: 'OK',
-          onPressed: () {},
-        ),
-      ),
-    );
-  }
+  // void showSnackBarWithWelcomeMessage() {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: ref.read(firebaseAuthenticationProvider.notifier).checkIfUserIsNull(auth.currentUser),
+  //       action: SnackBarAction(
+  //         label: 'OK',
+  //         onPressed: () {},
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  final User? user = FirebaseAuthentication().currentUser;
+  // final User? user = FirebaseAuthentication().currentUser;
 
   Widget _title() {
     return const Text("Firebase Authentication");
   }
 
   Widget _userEmail() {
-    return Text("Hello, ${user?.email}");
+    return const Text("Hello");
   }
 
   Widget _signOutButton() {

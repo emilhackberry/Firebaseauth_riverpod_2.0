@@ -3,10 +3,11 @@
 import 'package:build_runner_core/build_runner_core.dart' as _i1;
 import 'package:riverpod_generator/builder.dart' as _i2;
 import 'package:source_gen/builder.dart' as _i3;
-import 'package:build_resolvers/builder.dart' as _i4;
-import 'dart:isolate' as _i5;
-import 'package:build_runner/build_runner.dart' as _i6;
-import 'dart:io' as _i7;
+import 'package:freezed/builder.dart' as _i4;
+import 'package:build_resolvers/builder.dart' as _i5;
+import 'dart:isolate' as _i6;
+import 'package:build_runner/build_runner.dart' as _i7;
+import 'dart:io' as _i8;
 
 final _builders = <_i1.BuilderApplication>[
   _i1.apply(
@@ -24,8 +25,14 @@ final _builders = <_i1.BuilderApplication>[
     appliesBuilders: const [r'source_gen:part_cleanup'],
   ),
   _i1.apply(
+    r'freezed:freezed',
+    [_i4.freezed],
+    _i1.toDependentsOf(r'freezed'),
+    hideOutput: false,
+  ),
+  _i1.apply(
     r'build_resolvers:transitive_digests',
-    [_i4.transitiveDigestsBuilder],
+    [_i5.transitiveDigestsBuilder],
     _i1.toAllPackages(),
     isOptional: true,
     hideOutput: true,
@@ -37,12 +44,12 @@ final _builders = <_i1.BuilderApplication>[
 ];
 void main(
   List<String> args, [
-  _i5.SendPort? sendPort,
+  _i6.SendPort? sendPort,
 ]) async {
-  var result = await _i6.run(
+  var result = await _i7.run(
     args,
     _builders,
   );
   sendPort?.send(result);
-  _i7.exitCode = result;
+  _i8.exitCode = result;
 }
