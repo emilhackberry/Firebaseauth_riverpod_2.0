@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)"
+options: "6bdca78a94ab5e1cddead5f296a33b89139d93af557645fa01246c44e1e83117"
+build_start_time: [1694086320, 348180000]
+build_end_time: [1694086326, 705131000]
+inputs:
+  "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Flutter/GeneratedPluginRegistrant.swift": [1694086307, 734140016]
+  "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Runner/AppDelegate.swift": [1686177052, 0]
+  "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Runner/MainFlutterWindow.swift": [1686177052, 0]

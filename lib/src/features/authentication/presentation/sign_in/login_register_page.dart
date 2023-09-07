@@ -65,10 +65,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       (previous, current) {
         if (current.hasError) {
           //snackbar with regexp that trims part of the string output
-          showSnackBarWithMessage(
-            context,
-            current.error.toString().replaceAll(RegExp(r'\[.*?\]'), '').trim(),
-          );
+          showSnackBarWithMessage(context, current.error.toString().replaceAll(RegExp(r'\[.*?\]'), '').trim());
         }
       },
     );

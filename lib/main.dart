@@ -30,7 +30,6 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      // home: const WidgetTree(),
     );
   }
 }

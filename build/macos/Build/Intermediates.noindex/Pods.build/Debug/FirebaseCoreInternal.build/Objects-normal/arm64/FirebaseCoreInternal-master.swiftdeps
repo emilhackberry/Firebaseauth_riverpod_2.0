@@ -1,0 +1,29 @@
+version: "Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)"
+options: "eb267ee52f3a0d0bda5048692868be1cec2ebdcd16b14b3c39b26bc5fa387b54"
+build_start_time: [1694086293, 708876000]
+build_end_time: [1694086311, 856208000]
+inputs:
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift"
+  : [1694086286, 891581981]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatController.swift"
+  : [1694086286, 892033934]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatLoggingTestUtils.swift"
+  : [1694086286, 892331389]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift"
+  : [1694086286, 892475303]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsBundle.swift"
+  : [1694086286, 892639968]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsPayload.swift"
+  : [1694086286, 892927423]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/RingBuffer.swift"
+  : [1694086286, 891731896]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift"
+  : [1694086286, 891440358]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/StorageFactory.swift"
+  : [1694086286, 893183503]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/WeakContainer.swift"
+  : [1694086286, 892776883]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatController.swift"
+  : [1694086286, 891882477]
+  ? "/Users/emil/Documents/Flutter/firebaseauth/Firebaseauth_riverpod_2.0/macos/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatsPayload.swift"
+  : [1694086286, 892189640]

@@ -10,27 +10,8 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePage extends ConsumerState<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // void showSnackBarWithWelcomeMessage() {
-  //   ScaffoldMessenger.of(context).showSnackBar(
-  //     SnackBar(
-  //       content: ref.read(firebaseAuthenticationProvider.notifier).checkIfUserIsNull(auth.currentUser),
-  //       action: SnackBarAction(
-  //         label: 'OK',
-  //         onPressed: () {},
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // final User? user = FirebaseAuthentication().currentUser;
-
   Widget _title() {
-    return const Text("Firebase Authentication");
+    return const Text("FirebaseAuth w Riverpod");
   }
 
   Widget _userEmail() {
