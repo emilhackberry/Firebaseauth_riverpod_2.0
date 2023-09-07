@@ -27,12 +27,14 @@ class LoginPageController extends _$LoginPageController {
   }) async {
     // try {
     state = const AsyncLoading();
-    state = await AsyncValue.guard(() {
-      return firebaseAuthRepo.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    });
+    state = await AsyncValue.guard(
+      () {
+        return firebaseAuthRepo.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      },
+    );
   }
 
   Future<void> createUserWithEmailAndPassword({
@@ -41,12 +43,14 @@ class LoginPageController extends _$LoginPageController {
   }) async {
     // try {
     state = const AsyncLoading();
-    state = await AsyncValue.guard(() {
-      return firebaseAuthRepo.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    });
+    state = await AsyncValue.guard(
+      () {
+        return firebaseAuthRepo.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      },
+    );
   }
 
   Future<void> loginOrCreateAccount({
